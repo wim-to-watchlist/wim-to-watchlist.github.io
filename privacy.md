@@ -5,16 +5,16 @@ permalink: /privacy/
 
 # Privacy policy
 
-_Last updated: 2026-10-30_
+_Last updated: 2026-11-22_
 
 Watchlist is an unofficial client for [SIMKL](https://simkl.com). It has no analytics, advertising or third-party crash reporting.
 
 ## What the app sends, and to whom
 
 - **SIMKL (api.simkl.com, simkl.com).** When you sign in, simkl.com opens in your browser and sends the app an access token. The app then uses SIMKL's API to read and change your lists, ratings, watch history, playback progress, profile and statistics, and to search and browse titles. Every request carries the app's public client ID and name and version; requests for your data carry your access token.
-- **SIMKL's data files (data.simkl.in).** Trending lists and release calendars are downloaded as public files. Nothing about you is sent with them.
-- **TMDB (api.themoviedb.org), only if you add your own TMDB token.** In *Settings › Cast and crew* you can enter a free API Read Access Token from [TMDB](https://www.themoviedb.org/). The app then asks TMDB for the cast and crew of a title when you open its details page, for a person's page when you open it, and for people matching what you type in Search, sending your token, the title's or person's TMDB ID or your search words, and your phone's language. Nothing about your SIMKL account or library is sent. Without a token the app never contacts TMDB. TMDB's [privacy policy](https://www.themoviedb.org/privacy-policy) applies.
-- **Images (wsrv.nl).** Posters, backgrounds and cast photos are loaded through the wsrv.nl image proxy that SIMKL asks apps to use (cast photos come from TMDB's image server, image.tmdb.org, which only the proxy contacts). The proxy sees which image is requested and your IP address.
+- **SIMKL's data files (data.simkl.in).** Trending lists and release calendars are downloaded as public files. Nothing about you is sent with them: your access token only goes to api.simkl.com.
+- **TMDB (api.themoviedb.org), only with Watchlist Plus and your own TMDB token.** In *Settings › Cast and crew* you can enter a free API Read Access Token from [TMDB](https://www.themoviedb.org/). The app then asks TMDB for the cast and crew of a title when you open its details page, for a person's page when you open it, and for people matching what you type in Search, sending your token, the title's or person's TMDB ID or your search words, and your phone's language. Nothing about your SIMKL account or library is sent. Without Watchlist Plus or without a token the app never contacts TMDB. TMDB's [privacy policy](https://www.themoviedb.org/privacy-policy) applies.
+- **Images (wsrv.nl).** Posters, backgrounds, avatars, cast photos and trailer thumbnails are loaded through the wsrv.nl image proxy that SIMKL asks apps to use (cast photos come from TMDB's image server, image.tmdb.org, and trailer thumbnails from YouTube's, img.youtube.com; only the proxy contacts those). The proxy sees which image is requested and your IP address.
 - **Links you open** (trailers on YouTube, IMDb, TMDB, MyAnimeList and others) open in your browser or the matching app, under their own privacy policies.
 
 ## What the app stores on your device
@@ -25,7 +25,7 @@ Watchlist is an unofficial client for [SIMKL](https://simkl.com). It has no anal
 - An HTTP and image cache.
 - If the app crashes: the error's stack trace with the app version and phone model, shown to you the next time the app opens so you can copy it. It is deleted after it is shown and never sent anywhere.
 
-Only your settings (theme, bottom bar, content types, library options and whether you hid the card that offers a TMDB token) are included in Android's own backup to your Google account, if you turned that on, and in a transfer to a new phone, so they come back after a reset or on a new phone. Nothing else above is: not your tokens (you sign in again on a new phone), not your TMDB token (you enter it again), not the library copy (downloaded again after signing in), not the notification setting (it needs the permission again on a new phone). Signing out deletes the tokens, the library copy, the profile, the episode lists and the record of which episodes and movies you were notified about; uninstalling the app deletes everything.
+Only your settings (theme, bottom bar, content types, library options and whether you hid the card that offers a TMDB token) are included in Android's own backup to your Google account, if you turned that on, and in a transfer to a new phone, so they come back after a reset or on a new phone. Nothing else above is: not your tokens (you sign in again on a new phone), not your TMDB token (you enter it again), not the library copy (downloaded again after signing in), not the notification setting (it needs the permission again on a new phone). Signing out deletes the tokens, the library copy, the profile, the episode lists, the HTTP cache and the record of which episodes and movies you were notified about; uninstalling the app deletes everything.
 
 ## Background activity
 
@@ -33,12 +33,13 @@ Only when you turn on notifications for new episodes and releases: about every 4
 
 ## Subscription
 
-The subscription is sold by Google Play under [Google's terms and privacy policy](https://policies.google.com/privacy). The app never sees your payment details. It asks Google Play whether your subscription is active and keeps that answer, with the time it was checked, on your phone (not backed up), so it opens when you're offline.
+The subscription is sold by Google Play under [Google's terms and privacy policy](https://policies.google.com/privacy). The app never sees your payment details. It asks Google Play whether your subscription is active and keeps that answer, with the time it was checked, on your phone (not backed up), so it opens when you're offline. When you start the free trial, it also keeps the date the trial ends on your phone (not backed up), to remind you two days before.
 
 ## Permissions
 
 - **Internet** and **network state**: to talk to SIMKL (and TMDB, if you added a token).
-- **Notifications** (Android 13+, optional): for notifications about new episodes and movie releases.
+- **Notifications** (Android 13+, optional): for notifications about new episodes and movie releases, and the reminder before a free trial ends.
+- **Run at startup**, **wake lock** and **foreground service**: added by Android's WorkManager library, which runs the scheduled checks (new episodes, the trial reminder) and keeps them scheduled after the phone restarts.
 - **Google Play billing**: to sell the subscription through Google Play and check whether it is active.
 
 If this changes, this file will be updated **before** the change is released.
